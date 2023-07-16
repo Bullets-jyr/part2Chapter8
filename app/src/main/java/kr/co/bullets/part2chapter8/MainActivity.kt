@@ -2,12 +2,16 @@ package kr.co.bullets.part2chapter8
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.naver.maps.geometry.LatLng
 import com.naver.maps.map.CameraAnimation
 import com.naver.maps.map.CameraUpdate
 import com.naver.maps.map.NaverMap
 import com.naver.maps.map.OnMapReadyCallback
 import kr.co.bullets.part2chapter8.databinding.ActivityMainBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), OnMapReadyCallback {
 
@@ -23,6 +27,16 @@ class MainActivity : AppCompatActivity(), OnMapReadyCallback {
         binding.mapView.onCreate(savedInstanceState)
 
         binding.mapView.getMapAsync(this)
+
+        SearchRepository.getGoodRestaurant("서울").enqueue(object : Callback<SearchResult> {
+            override fun onResponse(call: Call<SearchResult>, response: Response<SearchResult>) {
+                Log.e("MainActivity", "${response.body().toString()}")
+            }
+
+            override fun onFailure(call: Call<SearchResult>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+        })
     }
 
     override fun onStart() {
