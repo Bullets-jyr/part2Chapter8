@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Part2Chapter8"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.naver.maps.map.CLIENT_ID"
+            android:value="@string/naver_client_id" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -20,9 +25,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <meta-data
-                android:name="com.naver.maps.map.CLIENT_ID"
-                android:value="@string/naver_client_id" />
         </activity>
     </application>
 
